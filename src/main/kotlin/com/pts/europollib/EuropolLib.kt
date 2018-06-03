@@ -1,7 +1,6 @@
 package com.pts.europollib
 
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import okhttp3.*
 
 class EuropolLib(
