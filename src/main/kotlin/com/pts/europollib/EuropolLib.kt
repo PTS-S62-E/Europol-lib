@@ -29,6 +29,16 @@ class EuropolLib(
         return Gson().fromJson(responseBody)
     }
 
+    fun getVehicleWithSearch(query: String): List<EuropolVehicle> {
+        val request = Request.Builder()
+                .url("${this.config.createUrl()}?search=$query")
+                .get()
+                .build()
+        val response = this.httpClient.newCall(request).execute()
+        val responseBody = response.body()!!.string()
+        return Gson().fromJson(responseBody)
+    }
+
     fun insertVehicle(europolVehicle: EuropolVehicle): EuropolVehicle {
         val request = Request.Builder()
                 .url(this.config.createUrl())

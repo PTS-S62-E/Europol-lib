@@ -16,6 +16,10 @@ class EuropolLibTestExample {
         println("Insert new vehicle, ${if (vehicleCount + 1 == newVehicleCount) "OK" else "Failed"} ($newVehicleCount)")
         Assert.assertEquals(vehicleCount + 1, newVehicleCount)
 
+        val testSearch = lib.getVehicleWithSearch("te")
+        Assert.assertTrue(testSearch.isNotEmpty())
+        println("Search returned ${testSearch.count()} results, ${if (testSearch.isEmpty()) "Failed" else "OK"}")
+
         val vehicleBySerial = lib.getVehicleBySerial("test")
         Assert.assertNotNull(vehicleBySerial)
         Assert.assertEquals(vehicleBySerial, EuropolVehicle("test", "test", "test"))
