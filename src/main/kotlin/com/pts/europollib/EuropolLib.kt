@@ -15,6 +15,8 @@ class EuropolLib(
     fun getVehicles(): List<EuropolVehicle> {
         val request = Request.Builder().url(this.config.createUrl()).get().build()
         val response = this.httpClient.newCall(request).execute()
+        if (!response.isSuccessful) throw EuropolResponseException("Got an error code from the API (${response.code()}, message: ${response.body()!!.string()}")
+
         val responseBody = response.body()!!.string()
         return Gson().fromJson(responseBody)
     }
@@ -25,6 +27,8 @@ class EuropolLib(
                 .get()
                 .build()
         val response = this.httpClient.newCall(request).execute()
+        if (!response.isSuccessful) throw EuropolResponseException("Got an error code from the API (${response.code()}, message: ${response.body()!!.string()}")
+
         val responseBody = response.body()!!.string()
         return Gson().fromJson(responseBody)
     }
@@ -35,6 +39,8 @@ class EuropolLib(
                 .get()
                 .build()
         val response = this.httpClient.newCall(request).execute()
+        if (!response.isSuccessful) throw EuropolResponseException("Got an error code from the API (${response.code()}, message: ${response.body()!!.string()}")
+
         val responseBody = response.body()!!.string()
         return Gson().fromJson(responseBody)
     }
@@ -46,6 +52,8 @@ class EuropolLib(
                 .header("Content-Type", "application/json")
                 .build()
         val response = this.httpClient.newCall(request).execute()
+        if (!response.isSuccessful) throw EuropolResponseException("Got an error code from the API (${response.code()}, message: ${response.body()!!.string()}")
+
         return Gson().fromJson(response.body()!!.string())
     }
 
@@ -56,6 +64,8 @@ class EuropolLib(
                 .delete(RequestBody.create(MediaType.parse("text/plain"), ""))
                 .build()
         val response = this.httpClient.newCall(request).execute()
+        if (!response.isSuccessful) throw EuropolResponseException("Got an error code from the API (${response.code()}, message: ${response.body()!!.string()}")
+
         return response.isSuccessful
     }
 }
